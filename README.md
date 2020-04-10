@@ -16,12 +16,12 @@
 ![erd](https://user-images.githubusercontent.com/61999234/78984562-887a9300-7b61-11ea-8e6d-c603298b376c.jpg)
 
 ## Class Diagram 일부
-### 관리자 - 상품관리
+#### 관리자 - 상품관리
 ![goodsManage_class_diagram](https://user-images.githubusercontent.com/61999234/78984570-8d3f4700-7b61-11ea-885a-dc29222ef399.jpg)
 </br>
 
 
-### 관리자 - 고객문의
+#### 관리자 - 고객문의
 ![inquiry_class_diagram](https://user-images.githubusercontent.com/61999234/78984574-8fa1a100-7b61-11ea-87a8-4b9bdb27bcd6.jpg)
 </br>
 
