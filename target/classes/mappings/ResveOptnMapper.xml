@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hotel.kg.employee.dao.ResveOptnDao">
+
+	<select id="sltAll"  resultType="MngResveOptnDTO">
+		SELECT * FROM RESVE_OPTN ORDER BY OPTN_NO
+	</select>
+	
+	<select id="sltOne"  resultType="MngResveOptnDTO">
+		SELECT * FROM RESVE_OPTN WHERE OPTN_NO = #{optn_no}
+	</select>
+	
+	<update id="update" parameterType="MngResveOptnDTO">
+		UPDATE RESVE_OPTN SET
+		OPTN_NAME = #{optn_name},
+		OPTN_PC = #{optn_pc},
+		OPTN_DELETE_AT = #{optn_delete_at}
+		WHERE OPTN_NO = #{optn_no}
+	</update>
+	
+	<insert id="insert" parameterType="MngResveOptnDTO">
+		INSERT INTO RESVE_OPTN(OPTN_NO, OPTN_NAME, OPTN_PC, OPTN_DELETE_AT)
+		VALUES( #{optn_no}, #{optn_name}, #{optn_pc}, #{optn_delete_at} )
+	</insert>
+
+</mapper>

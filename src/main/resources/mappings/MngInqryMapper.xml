@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hotel.kg.employee.dao.IMngInqryDao">
+	<select id="selectList" resultType="MngInqryDTO">
+		SELECT *
+		FROM (SELECT O.* , ROWNUM RNUM
+			FROM(
+				SELECT * 
+				FROM INQRY 
+				WHERE DELETE_AT = 'N'			
+				ORDER BY DECODE (ANSWER_AT, 'N', 1, 'Y', 2), INQRY_DATE ASC
+				) O
+			)		
+		WHERE RNUM <![CDATA[>=]]> #{rNum }
+		AND   ROWNUM <![CDATA[<=]]> #{rowNum } 
+	</select>
+	
+	<select id="selectListByThema" resultType="MngInqryDTO">
+		SELECT *
+		FROM (SELECT O.* , ROWNUM RNUM
+			FROM(
+				SELECT * 
+				FROM INQRY 
+				WHERE INQRY_THEMA = #{thema } 
+				AND DELETE_AT = 'N'			
+				ORDER BY DECODE (ANSWER_AT, 'N', 1, 'Y', 2), INQRY_DATE ASC
+				) O
+			)		
+		WHERE RNUM <![CDATA[>=]]> #{rNum }
+		AND   ROWNUM <![CDATA[<=]]> #{rowNum } 
+	</select>
+	
+	<select id="selectTotalCnt" resultType="Integer">
+		SELECT COUNT(*)
+		FROM INQRY
+		WHERE DELETE_AT = 'N'
+	</select>
+	
+	<select id="selectThemaCnt" parameterType="String" resultType="Integer">
+		SELECT COUNT(*)
+		FROM INQRY
+		WHERE DELETE_AT = 'N'
+		AND INQRY_THEMA = #{value }
+	</select>
+	
+	<select id="getThemaList" resultType="String">
+		SELECT INQRY_THEMA
+		FROM INQRY
+		WHERE DELETE_AT = 'N'
+		GROUP BY INQRY_THEMA
+	</select>
+</mapper>
+

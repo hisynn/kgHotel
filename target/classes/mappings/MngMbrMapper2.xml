@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hotel.kg.employee.dao.IMbrDao">
+	
+	<select id="selectOne" parameterType="String" resultType="MngMbrDTO">
+		SELECT *
+		FROM MBR
+		WHERE MBR_EMAIL = #{value }
+	</select>
+	
+	<update id="update" parameterType="MngMbrDTO">
+		UPDATE MBR SET
+		MBR_NAME = #{mbr_name },
+		MBR_PW = #{mbr_pw },
+		MBR_BRTHDY = #{mbr_brthdy },
+		MBR_ADRES = #{mbr_adres },
+		MBR_TEL = #{mbr_tel },
+		MBR_GRAD = #{mbr_grad },
+		MBR_NLTY = #{mbr_nlty },
+		MBR_SEXDSTN = #{mbr_sexdstn },
+		ACT_AT = #{act_at },
+		SRBDE = #{srbde },
+		MBR_POINT = #{mbr_point }
+		WHERE MBR_EMAIL = #{mbr_email }
+	</update>
+
+</mapper>
+

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hotel.kg.inqry.dao.IInqryDao">
+
+	<insert id="inqryInsert" parameterType="inqryDto">
+		INSERT INTO INQRY(MBR_EMAIL, INQRY_DATE, INQRY_THEMA, INQRY_TY, INQRY_SJ, INQRY_CN, ANSWER_AT, DELETE_AT) 
+		VALUES(#{mbr_email}, #{inqry_date}, #{inqry_thema}, #{inqry_ty}, #{inqry_sj}, #{inqry_cn}, #{answer_at}, #{delete_at})
+	</insert>
+	
+	<select id="inqrySelect" parameterType="String" resultType="inqryDto">
+		SELECT * FROM INQRY WHERE MBR_EMAIL = #{mbr_email}
+	</select>
+	
+	<select id="inqrySelectOne" parameterType="inqryDto" resultType="inqryDto">
+		SELECT * FROM INQRY WHERE MBR_EMAIL = #{mbr_email} AND INQRY_DATE = #{inqry_date}
+	</select>
+	
+	<select id="inqrySelectAll" parameterType="HashMap" resultType="inqryDto">
+		<![CDATA[
+		SELECT *                   	  
+				FROM ( SELECT O.*              
+				            , ROWNUM RNUM      
+				       FROM ( SELECT *         
+				              FROM   INQRY  
+				              WHERE  1 = 1     
+				              AND    MBR_EMAIL = #{mbr_email} 
+				              ORDER  BY INQRY_DATE DESC 
+				            ) O                
+				     )                         
+				WHERE  RNUM   >= #{start}             
+				AND    ROWNUM <= #{readCnt}             
+		]]>
+	</select>
+	
+</mapper>

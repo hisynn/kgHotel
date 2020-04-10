@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hotel.kg.employee.dao.MngNoticeDao">
+
+	
+	<select id="noticeSltMulti" resultType="MngNoticeDTO">
+		<![CDATA[
+		SELECT *
+		FROM 	( SELECT ROWNUM RNUM
+					   , O.*
+				  FROM ( SELECT *
+						 FROM NOTICE
+						 ORDER BY RGSDE DESC
+					   ) O
+				)
+		WHERE RNUM >= #{start}
+		AND ROWNUM <= 10
+		]]>
+	</select>			
+	
+	<select id="noticeGetCount" resultType="int" >
+		SELECT COUNT(*) FROM NOTICE
+	</select>
+		
+	
+
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hotel.kg.employee.dao.OptnDao">
+
+	<select id="sltAll"  resultType="MngOptnDTO">
+		SELECT * FROM OPTN ORDER BY MBR_EMAIL
+	</select>
+	
+	<select id="sltOne"  resultType="MngOptnDTO">
+		SELECT * FROM OPTN WHERE OPTN_NO = #{optn_no}
+		AND MBR_EMAIL = #{mbr_email}
+		AND RESVE_DATE = #{resve_date}
+	</select>
+	
+	<update id="update" parameterType="MngOptnDTO">
+		
+	</update>
+
+</mapper>

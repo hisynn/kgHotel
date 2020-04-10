@@ -1,0 +1,69 @@
+[class^='col-'] {padding:20px;}
+
+.kg-form-control {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 0px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+       -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+          transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.kg-menu-c {
+	color: #101010;
+}
+
+.kg-table th{
+	background-color: #bbdefb;
+	vertical-align: middle;
+	height:40px;
+}
+
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td,
+	.table>tbody>tr>td, .table>tfoot>tr>td {
+	padding: 8px;
+	line-height: 1.42857143;
+	vertical-align: middle;
+	border-top: 1px solid #ddd
+}
+.kg-table>tbody>tr>td{vertical-align: middle; margin:10px; padding:5px; height:40px;}
+.regform-input select{width:400px; height:40px;}
+.kh-table>tbody>tr{height:80px;}
+
+body{font-size: 17px;}
+input{height:40px; margin:10px; padding:5px;}
+select{height:40px; margin:10px; padding:5px;}
+select>option{padding:0px; font-size:17px; margin:0px;}
+textarea{height:40px; margin:10px; padding:5px;}
+
+div select option{
+	opacity: 0;
+	filter: alpha(opacity = 0);
+	-moz-opacity: 0;
+	border: none;
+	background: none;
+	position: absolute;
+	height: 25px;
+	top: 0px;
+	left: 0px;
+	width: 200%;
+}
+
+.ast{
+    color: #F33;
+    font-size: 10px;
+    font-family: Verdana;
+    vertical-align: middle;
+}
+
+
