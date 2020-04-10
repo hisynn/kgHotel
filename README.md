@@ -2,6 +2,76 @@
 ## 프로젝트 개요
 관리자 및 사용자 환경의 웹 호텔 관리 시스템
 
+
+## 사용된 기술
+Spring MVC, Mybatis, Ajax
+
+
+## 담당업무
+* Controller
+
+  * com.hotel.kg.employee.controller.MngGoodsController.java
+
+  * com.hotel.kg.employee.controller.MngGoodsRestController.java
+ 
+  * com.hotel.kg.employee.controller.MngInqryController.java
+
+  * com.hotel.kg.employee.controller.MngInqryRestController.java
+  
+  * com.hotel.kg.employee.controller.MngMbrController.java
+  
+  * com.hotel.kg.employee.controller.MngMbrRestController.java
+  
+  * com.hotel.kg.employee.controller.MngMypageController.java
+  
+* Service (interface 생략)
+  * com.hotel.kg.employee.service.MngGoodsSvcImpl.java
+ 
+  * com.hotel.kg.employee.service.MngInqrySvcImpl.java
+  
+  * com.hotel.kg.employee.service.MngMbrSvcImpl.java
+  
+  * com.hotel.kg.employee.service.MngMyPageSvcImpl.java
+  
+* DAO Interface
+  * com.hotel.kg.employee.dao.IGoodsDao.java
+  
+  * com.hotel.kg.employee.dao.IMngGoodsDao.java
+  
+  * com.hotel.kg.employee.dao.IInqryDao.java
+  
+  * com.hotel.kg.employee.dao.IMngInqryDao.java
+  
+  * com.hotel.kg.employee.dao.IMbrDao.java
+  
+  * com.hotel.kg.employee.dao.IMngMbrDao.java
+  
+  * com.hotel.kg.employee.dao.IMngrDao.java
+  
+* DTO, DAO Mapper 생략  
+
+* JSP
+  * src/main/webapp/WEB-INF/views/MngGoodsInsertForm.jsp
+  
+  * src/main/webapp/WEB-INF/views/MngGoodsList.jsp
+  
+  * src/main/webapp/WEB-INF/views/MngGoodsUpdateForm.jsp
+  
+  * src/main/webapp/WEB-INF/views/MngInqryContents.jsp
+  
+  * src/main/webapp/WEB-INF/views/MngInqryList.jsp
+  
+  * src/main/webapp/WEB-INF/views/MngMbrList.jsp
+  
+  * src/main/webapp/WEB-INF/views/MngMbrUpdateForm.jsp
+  
+  * src/main/webapp/WEB-INF/views/MngMyPage.jsp
+  
+  * src/main/webapp/WEB-INF/views/MngOptionUpdateForm.jsp
+  
+  * src/main/webapp/WEB-INF/views/MngRumtyUpdateForm.jsp
+  
+  
 ## Preview
 ![view1](https://user-images.githubusercontent.com/61999234/78984554-84e70c00-7b61-11ea-980d-d6f6839ea5d7.jpg)
 </br>
