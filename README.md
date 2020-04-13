@@ -48,8 +48,6 @@ Spring MVC, Mybatis, Ajax
   
   * com.hotel.kg.employee.dao.IMngrDao.java
   
-* DTO, DAO Mapper 생략  
-
 * JSP
   * src/main/webapp/WEB-INF/views/MngGoodsInsertForm.jsp
   
@@ -70,6 +68,9 @@ Spring MVC, Mybatis, Ajax
   * src/main/webapp/WEB-INF/views/MngOptionUpdateForm.jsp
   
   * src/main/webapp/WEB-INF/views/MngRumtyUpdateForm.jsp
+  
+* DTO, DAO Mapper 생략  
+
 <br/><br/><br/>  
   
 ## Preview
@@ -87,14 +88,10 @@ Spring MVC, Mybatis, Ajax
 ![erd](https://user-images.githubusercontent.com/61999234/78984562-887a9300-7b61-11ea-8e6d-c603298b376c.jpg)
 <br/><br/><br/>
 
-## Class Diagram 일부
-#### 관리자 - 상품관리
+## Class Diagram 관리자 - 상품관리
 ![goodsManage_class_diagram](https://user-images.githubusercontent.com/61999234/78984570-8d3f4700-7b61-11ea-885a-dc29222ef399.jpg)
 <br/><br/><br/>
 
-#### 관리자 - 고객문의
-![inquiry_class_diagram](https://user-images.githubusercontent.com/61999234/78984574-8fa1a100-7b61-11ea-87a8-4b9bdb27bcd6.jpg)
-<br/><br/><br/>
 
 
 
