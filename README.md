@@ -4,7 +4,7 @@
 <br/><br/><br/>
 
 ## 사용된 기술
-Spring MVC, Mybatis, Ajax
+Spring MVC, Maven Project, Bootstrap, Mybatis, Ajax
 <br/><br/><br/>
 
 ## 담당업무
