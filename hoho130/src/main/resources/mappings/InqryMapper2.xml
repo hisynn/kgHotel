@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hotel.kg.employee.dao.IInqryMngDao">
+
+	<select id="selectOne" parameterType="String" resultType="MngInqryDTO">
+		SELECT *
+		FROM INQRY
+		WHERE MBR_EMAIL = #{email }
+		AND INQRY_DATE = #{inqry_date }
+	</select>
+	
+	<update id="update" parameterType="MngInqryDTO">
+		UPDATE INQRY SET
+		INQRY_SJ = #{inqry_sj},
+		INQRY_CN = #{inqry_cn},
+		ANSWER_CN = #{answer_cn},
+		ANSWER_DATE = #{answer_date},
+		ANSWER_AT = #{answer_at},
+		DELETE_AT = #{delete_at},
+		INQRY_THEMA = #{inqry_thema},
+		INQRY_TY = #{inqry_ty}
+		WHERE MBR_EMAIL = #{mbr_email}
+		AND INQRY_DATE = #{inqry_date}
+	</update>
+</mapper>
+

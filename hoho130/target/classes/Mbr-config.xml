@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.hotel.kg.member.dto.MemberDTO" alias="dto"></typeAlias>
+		<typeAlias type="com.hotel.kg.member.dto.MemberHistDTO" alias="HDto"></typeAlias>
+		<typeAlias type="com.hotel.kg.notice.dto.NoticeDTO" alias="NDto"></typeAlias>
+		<typeAlias type="com.hotel.kg.notice.dto.NoticeEtcDTO" alias="EDto"></typeAlias>
+		<typeAlias type="com.hotel.kg.inqry.dto.InqryDto" alias="inqryDto"></typeAlias>
+		<typeAlias type="com.hotel.kg.resve.dto.ReserveRoomDTO" alias="reserveDTO"></typeAlias>
+		<typeAlias type="com.hotel.kg.resve.dto.GoodsDTO" alias="goodsDTO"></typeAlias>
+		<typeAlias type="com.hotel.kg.resve.dto.ReserveFinal" alias="resultFinalDTO"></typeAlias>
+		<typeAlias type="com.hotel.kg.resve.dto.OptnDTO" alias="optnDTO"></typeAlias>
+		<typeAlias type="com.hotel.kg.resvelist.dto.ShowResveDto" alias="showResveDto"></typeAlias>
+		<typeAlias type="com.hotel.kg.resvelist.dto.ResveOptnDto" alias="resveOptnDto"></typeAlias>
+		
+		<typeAlias type="com.hotel.kg.employee.dto.RumDto" alias="MngRumDTO"></typeAlias>
+		<typeAlias type="com.hotel.kg.employee.dto.RumtyDto" alias="MngRumtyDTO"></typeAlias>
+		<typeAlias type="com.hotel.kg.employee.dto.ResveDto" alias="MngResveDTO"></typeAlias>
+		<typeAlias type="com.hotel.kg.employee.dto.GoodsDto" alias="MngGoodsDTO"></typeAlias>
+		<typeAlias type="com.hotel.kg.employee.dto.GoodsTyDto" alias="MngGoodsTyDTO"></typeAlias>
+		<typeAlias type="com.hotel.kg.employee.dto.MbrDto" alias="MngMbrDTO"></typeAlias>
+		<typeAlias type="com.hotel.kg.employee.dto.ResveOptnDto" alias="MngResveOptnDTO"></typeAlias>
+		<typeAlias type="com.hotel.kg.employee.dto.OptnDto" alias="MngOptnDTO"></typeAlias>
+		<typeAlias type="com.hotel.kg.employee.dto.ShowResveDto" alias="MngShowResveDTO"></typeAlias>
+		<typeAlias type="com.hotel.kg.employee.dto.ShowOptnDto" alias="MngShowOptnDTO"></typeAlias>
+		<typeAlias type="com.hotel.kg.employee.dto.NoticeDto" alias="MngNoticeDTO"></typeAlias>
+		<typeAlias type="com.hotel.kg.employee.dto.SellingDto" alias="MngSellingDTO"></typeAlias>
+		<typeAlias type="com.hotel.kg.employee.dto.InqryDto" alias="MngInqryDTO"></typeAlias>
+		<typeAlias type="com.hotel.kg.employee.dto.MngrDto" alias="MngMngrDTO"></typeAlias>
+	</typeAliases>
+	<!-- 
+	<mappers>
+		<mapper resource="#package/#mapper.xml" />
+	</mappers> 
+	-->
+</configuration>

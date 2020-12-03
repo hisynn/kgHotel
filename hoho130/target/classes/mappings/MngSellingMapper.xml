@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hotel.kg.employee.dao.MngSellingDao">
+	
+	<select id="goodsSellingSltDate" parameterType="hashmap" resultType="MngSellingDTO">
+		<![CDATA[
+		SELECT *
+		FROM 	( SELECT ROWNUM RNUM
+					   , O.*
+				  FROM ( SELECT R.CHCKT, G.GOODS_NAME, T.RUMTY_NAME,  R.RUM_QY "QY",  R.RESVE_TOTAMT-SUM(RO.OPTN_PC * O.OPTN_QY) "TOTAMT"
+                         FROM GOODS G
+                         LEFT OUTER JOIN RUMTY T ON T.RUMTY_NO = G.RUMTY_NO 
+                         LEFT OUTER JOIN RESVE R ON R.GOODS_NO = G.GOODS_NO
+                         LEFT OUTER JOIN OPTN O ON O.MBR_EMAIL = R.MBR_EMAIL AND O.RESVE_DATE = R.RESVE_DATE
+                         LEFT OUTER JOIN RESVE_OPTN RO ON RO.OPTN_NO = O.OPTN_NO
+                         WHERE CHCKT >= #{startDate}
+                         AND CHCKT <= #{endDate}
+                         AND R.RUM_QY != 0
+                         GROUP BY R.RESVE_DATE, R.MBR_EMAIL, R.CHCKT, G.GOODS_NAME, T.RUMTY_NAME
+                                , R.RESVE_TOTAMT, R.RUM_QY
+					   ) O
+				)
+		WHERE RNUM >= #{start}
+		AND ROWNUM <= 10
+		]]>
+	</select>
+	
+	<select id="optnSellingSltDate" parameterType="hashmap" resultType="MngSellingDTO">
+		<![CDATA[
+		SELECT *
+		FROM 	( SELECT ROWNUM RNUM
+					   , O.*
+				  FROM ( SELECT R.CHCKT, RO.OPTN_NAME "GOODS_NAME", T.RUMTY_NAME, O.OPTN_QY "QY",  SUM(RO.OPTN_PC * O.OPTN_QY) "TOTAMT"
+                         FROM GOODS G
+                         LEFT OUTER JOIN RUMTY T ON T.RUMTY_NO = G.RUMTY_NO 
+                         LEFT OUTER JOIN RESVE R ON R.GOODS_NO = G.GOODS_NO
+                         LEFT OUTER JOIN OPTN O ON O.MBR_EMAIL = R.MBR_EMAIL AND O.RESVE_DATE = R.RESVE_DATE
+                         LEFT OUTER JOIN RESVE_OPTN RO ON RO.OPTN_NO = O.OPTN_NO
+                         WHERE CHCKT >= #{startDate}
+                         AND CHCKT <= #{endDate}
+                         AND O.OPTN_QY != 0
+                         GROUP BY R.RESVE_DATE, R.MBR_EMAIL, R.CHCKT, RO.OPTN_NAME, T.RUMTY_NAME, O.OPTN_QY
+					   ) O
+				)
+		WHERE RNUM >= #{start}
+		AND ROWNUM <= 10
+		]]>
+	</select>
+	
+	
+	
+	<select id="goodsSellingGetCount" parameterType="hashmap" resultType="int">
+	<![CDATA[
+	SELECT COUNT(*)
+	FROM RESVE R
+	WHERE CHCKT >= #{startDate}
+	AND CHCKT <= #{endDate}
+	AND R.RUM_QY != 0
+	]]>
+	</select>
+	
+	<select id="optnSellingGetCount" parameterType="hashmap" resultType="int">
+	<![CDATA[
+	SELECT COUNT(*)
+	FROM OPTN O
+	LEFT OUTER JOIN RESVE R ON R.RESVE_DATE = O.RESVE_DATE AND R.MBR_EMAIL = O.MBR_EMAIL
+	WHERE CHCKT >= #{startDate}
+	AND CHCKT <= #{endDate} 
+	AND O.OPTN_QY != 0
+	]]>
+	</select>
+	
+	<select id="goodsSellingSlt" parameterType="hashmap" resultType="int">
+	<![CDATA[
+	SELECT SUM(R.RESVE_TOTAMT)-SUM(RO.OPTN_PC * O.OPTN_QY) 
+	FROM RESVE R
+    LEFT OUTER JOIN OPTN O ON O.MBR_EMAIL = R.MBR_EMAIL AND O.RESVE_DATE = R.RESVE_DATE
+    LEFT OUTER JOIN RESVE_OPTN RO ON RO.OPTN_NO = O.OPTN_NO
+	WHERE CHCKT >= #{startDate}
+	AND CHCKT <= #{endDate}
+	]]>
+	</select>
+	
+	<select id="optnSellingSlt" parameterType="hashmap" resultType="long">
+	<![CDATA[
+	SELECT SUM(RO.OPTN_PC * O.OPTN_QY)
+	FROM OPTN O
+	LEFT OUTER JOIN RESVE_OPTN RO ON RO.OPTN_NO = O.OPTN_NO 
+	LEFT OUTER JOIN RESVE R ON R.MBR_EMAIL = O.MBR_EMAIL AND R.RESVE_DATE = O.RESVE_DATE
+	WHERE CHCKT >= #{startDate}
+	AND CHCKT <= #{endDate}
+	]]>
+	</select>
+	
+	
+
+</mapper>

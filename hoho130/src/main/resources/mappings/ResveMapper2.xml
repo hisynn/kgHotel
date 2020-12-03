@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hotel.kg.resvelist.dao.IResveListDAO">
+
+	<select id="resveSelect" parameterType="String" resultType="showResveDto">
+		SELECT G.GOODS_NAME, G.GOODS_CN, R.MBR_EMAIL, R.RESVE_DATE, R.CHKIN, R.CHCKT, R.RESVE_TOTAMT
+		FROM RESVE R
+		LEFT OUTER JOIN GOODS G ON R.GOODS_NO = G.GOODS_NO
+		WHERE MBR_EMAIL = #{mbr_email}
+	</select>
+	
+	<select id="resveOptnSelect" parameterType="showResveDto" resultType="resveOptnDto">
+		SELECT RO.OPTN_NAME, O.OPTN_QY, (O.OPTN_QY * RO.OPTN_PC) "OPTN_TOTAMT"
+		FROM OPTN O
+		LEFT OUTER JOIN RESVE_OPTN RO ON O.OPTN_NO = RO.OPTN_NO
+		WHERE MBR_EMAIL= #{mbr_email}
+		AND RESVE_DATE = #{resve_date}
+	</select>
+	
+</mapper>

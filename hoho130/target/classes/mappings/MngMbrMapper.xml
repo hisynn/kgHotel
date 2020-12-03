@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hotel.kg.employee.dao.IMngMbrDao">
+
+
+	<select id="selectList" resultType="MngMbrDTO">
+		SELECT *
+		FROM (SELECT O.* , ROWNUM RNUM
+			FROM(
+				SELECT * 
+				FROM MBR 
+				WHERE ACT_AT = 'Y' 
+				ORDER BY SRBDE DESC
+				) O
+			)
+		
+		WHERE RNUM <![CDATA[>=]]> #{rNum }
+		AND   ROWNUM <![CDATA[<=]]> #{rowNum } 
+	</select>
+	
+	<select id="selectListByName" resultType="MngMbrDTO">
+		SELECT *
+		FROM (SELECT O.* , ROWNUM RNUM
+			FROM(
+				SELECT * 
+				FROM MBR 
+				WHERE MBR_NAME = #{name } 
+				AND ACT_AT = 'Y'			
+				ORDER BY SRBDE DESC
+				) O
+			)		
+		WHERE RNUM <![CDATA[>=]]> #{rNum }
+		AND   ROWNUM <![CDATA[<=]]> #{rowNum } 
+	</select>
+
+	<select id="selectListByEmail" parameterType="String" resultType="MngMbrDTO">
+		SELECT * 
+		FROM MBR 
+		WHERE ACT_AT = 'Y'
+		AND MBR_EMAIL = #{value } 
+		ORDER BY SRBDE DESC
+	</select>
+	
+	<select id="selectTotalCnt" resultType="Integer">
+		SELECT COUNT(*)
+		FROM MBR
+		WHERE ACT_AT = 'Y'
+	</select>
+	
+	<select id="selectNameCnt" parameterType="String" resultType="Integer">
+		SELECT COUNT(*)
+		FROM MBR
+		WHERE ACT_AT = 'Y'
+		AND MBR_NAME = #{value }
+	</select>
+</mapper>
+

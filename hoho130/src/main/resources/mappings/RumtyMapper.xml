@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hotel.kg.employee.dao.IRumtyDao">
+
+	<select id="sltOne" parameterType="String" resultType="MngRumtyDTO">
+		SELECT *
+		FROM RUMTY
+		WHERE RUMTY_NO = #{value }
+	</select>
+	
+
+	<insert id="insert" parameterType="MngRumtyDTO">
+		INSERT INTO RUMTY(RUMTY_NO, RUMTY_NAME, RUM_TOTAR, RUM_BEDD_TY, NMPR_LMTT, RUM_PC, RUM_GUIDANCE, RUM_IMAGE_URL) 
+		VALUES ( #{rumty_no}, #{rumty_name}, #{rum_totar}, #{rum_bedd_ty}, #{nmpr_lmtt}, #{rum_pc}, #{rum_guidance}, #{rum_image_url} )
+	</insert>
+
+	<update id="update" parameterType="MngRumtyDTO">
+		UPDATE RUMTY SET
+		RUMTY_NAME = #{rumty_name},
+		RUM_TOTAR = #{rum_totar},
+		RUM_BEDD_TY = #{rum_bedd_ty},
+		NMPR_LMTT = #{nmpr_lmtt},
+		RUM_PC = #{rum_pc},
+		RUM_GUIDANCE = #{rum_guidance},
+		RUM_IMAGE_URL = #{rum_image_url}
+		WHERE RUMTY_NO = #{rumty_no}
+	</update>
+</mapper>
+

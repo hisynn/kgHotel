@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hotel.kg.employee.dao.MngResveDao">
+
+	
+	<select id="sltOptn" resultType="MngShowOptnDTO">
+		SELECT RO.OPTN_NAME, O.OPTN_QY 
+		FROM OPTN O
+		LEFT OUTER JOIN RESVE_OPTN RO ON RO.OPTN_NO = O.OPTN_NO
+		WHERE 	MBR_EMAIL = #{mbr_email}
+		AND 	RESVE_DATE = #{resve_date}
+	</select>
+	
+	<select id="resveSltOne" resultType="MngShowResveDTO">
+	SELECT M.MBR_NAME, M.MBR_TEL, M.MBR_EMAIL, R.RESVE_DATE, G.GOODS_NAME,
+	RT.RUMTY_NAME, R.CHKIN, R.CHCKT, R.RUM_QY, R.ADULT_NMPR, R.CHILD_NMPR,
+	R.RESVE_TOTAMT, R.REQUST_MATTER, R.RESVE_DELETE_AT
+	FROM RESVE R
+	LEFT OUTER JOIN MBR M ON R.MBR_EMAIL = M.MBR_EMAIL
+	LEFT OUTER JOIN GOODS G ON G.GOODS_NO = R.GOODS_NO
+	LEFT OUTER JOIN RUMTY RT ON RT.RUMTY_NO = G.RUMTY_NO
+	WHERE R.MBR_EMAIL = #{mbr_email}
+	AND R.RESVE_DATE =  #{resve_date}
+	</select>
+	
+	<select id="resveSltMulti" parameterType="int" resultType="MngShowResveDTO">
+		<![CDATA[
+		SELECT *
+		FROM 	( SELECT ROWNUM RNUM
+					   , O.*
+				  FROM ( SELECT M.MBR_NAME, M.MBR_EMAIL, R.RESVE_DATE, G.GOODS_NAME, R.CHKIN, R.CHCKT
+				  			  , R.RUM_QY, R.ADULT_NMPR, R.CHILD_NMPR, R.RESVE_TOTAMT, R.RESVE_DELETE_AT
+						 FROM RESVE R
+						 LEFT OUTER JOIN MBR M ON R.MBR_EMAIL = M.MBR_EMAIL
+						 LEFT OUTER JOIN GOODS G ON G.GOODS_NO = R.GOODS_NO
+						 LEFT OUTER JOIN RUMTY RT ON RT.RUMTY_NO = G.RUMTY_NO
+						 ORDER BY RESVE_DATE DESC
+					   ) O
+				)
+		WHERE RNUM >= #{start}
+		AND ROWNUM <= 10
+		]]>
+	</select>
+	
+	<select id="resveNameSlt" parameterType="hashmap" resultType="MngShowResveDTO">
+	<![CDATA[
+		SELECT *
+		FROM 	( SELECT ROWNUM RNUM
+					   , O.*
+				  FROM ( SELECT M.MBR_NAME, M.MBR_EMAIL, R.RESVE_DATE, G.GOODS_NAME, R.CHKIN, R.CHCKT
+				  			  , R.RUM_QY, R.ADULT_NMPR, R.CHILD_NMPR, R.RESVE_TOTAMT, R.RESVE_DELETE_AT
+						 FROM RESVE R
+						 LEFT OUTER JOIN MBR M ON R.MBR_EMAIL = M.MBR_EMAIL
+						 LEFT OUTER JOIN GOODS G ON G.GOODS_NO = R.GOODS_NO
+						 LEFT OUTER JOIN RUMTY RT ON RT.RUMTY_NO = G.RUMTY_NO
+						 WHERE M.MBR_NAME LIKE #{keyword}||'%'
+						 ORDER BY RESVE_DATE DESC
+					   ) O
+				)
+		WHERE RNUM >= #{start}
+		AND ROWNUM <= 10
+	]]>
+	</select>	
+	
+	<select id="resveEmailSlt" parameterType="hashmap" resultType="MngShowResveDTO">
+	<![CDATA[
+		SELECT *
+		FROM 	( SELECT ROWNUM RNUM
+					   , O.*
+				  FROM (  SELECT M.MBR_NAME, M.MBR_EMAIL, R.RESVE_DATE, G.GOODS_NAME, R.CHKIN, R.CHCKT
+				  			  , R.RUM_QY, R.ADULT_NMPR, R.CHILD_NMPR, R.RESVE_TOTAMT, R.RESVE_DELETE_AT
+						 FROM RESVE R
+						 LEFT OUTER JOIN MBR M ON R.MBR_EMAIL = M.MBR_EMAIL
+						 LEFT OUTER JOIN GOODS G ON G.GOODS_NO = R.GOODS_NO
+						 LEFT OUTER JOIN RUMTY RT ON RT.RUMTY_NO = G.RUMTY_NO
+						 WHERE M.MBR_EMAIL LIKE #{keyword}||'%'	
+						 ORDER BY RESVE_DATE DESC
+					   ) O
+				)
+		WHERE RNUM >= #{start}
+		AND ROWNUM <= 10
+	]]>
+	</select>	
+	
+	<select id="resveGetCount" resultType="int" >
+		SELECT COUNT(*) FROM RESVE
+	</select>
+	
+	<select id="nameGetCount" parameterType="String" resultType="int" >
+		SELECT COUNT(*) 
+		FROM RESVE R
+		   , MBR M
+		WHERE M.MBR_EMAIL = R.MBR_EMAIL
+		AND M.MBR_NAME LIKE #{keyword}||'%'
+	</select>
+	<select id="emailGetCount" parameterType="String" resultType="int" >
+		SELECT COUNT(*) 
+		FROM RESVE R
+		   , MBR M
+		WHERE M.MBR_EMAIL = R.MBR_EMAIL
+		AND M.MBR_EMAIL LIKE #{keyword}||'%'
+	</select>
+		
+	
+
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hotel.kg.employee.dao.RumDao">
+
+	<select id="sltAll"  resultType="MngRumDTO">
+		SELECT * FROM RUM ORDER BY RUM_NO
+	</select>
+	
+	<select id="sltOne"  resultType="MngRumDTO">
+		SELECT * FROM RUM WHERE RUM_NO = #{rum_no}
+	</select>
+	
+	<update id="update" parameterType="MngRumDTO">
+		UPDATE RUM SET RUMTY_NO= #{rumty_no}, CHKIN_AT = #{chkin_at} , CHKIN_POSBL_AT = #{chkin_posbl_at} WHERE RUM_NO = #{rum_no}
+	</update>
+
+</mapper>

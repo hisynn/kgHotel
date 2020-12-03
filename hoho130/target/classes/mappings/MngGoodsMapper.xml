@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hotel.kg.employee.dao.IMngGoodsDao">
+
+	<select id="getMaxRumtyCnt" resultType="Integer">
+		SELECT COUNT(*)
+		FROM RUMTY
+	</select>
+	
+	<select id="getMaxOptionCnt" resultType="Integer">
+		SELECT COUNT(*)
+		FROM RESVE_OPTN
+	</select>
+	
+	<select id="getMaxGoodsCnt" resultType="Integer">
+		SELECT COUNT(*)
+		FROM GOODS
+	</select>
+	
+	<select id="selectRumtyList" resultType="MngRumtyDTO">
+		SELECT *
+		FROM RUMTY
+		ORDER BY RUMTY_NO ASC
+	</select>
+	
+	<select id="selectGoodsList" resultType="MngGoodsDTO">
+		SELECT *
+		FROM GOODS
+		WHERE GOODS_DELETE_AT = 'N'
+		ORDER BY GOODS_NO ASC
+	</select>
+	
+	<select id="selectOptionList" resultType="MngResveOptnDTO">
+		SELECT *
+		FROM RESVE_OPTN
+		WHERE OPTN_DELETE_AT = 'N'
+		ORDER BY OPTN_NO ASC
+	</select>
+	
+	<select id="selectGoods_TyList" resultType="MngGoodsTyDTO">
+		SELECT *
+		FROM GOODS_TY
+	</select>
+</mapper>
+

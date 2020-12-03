@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hotel.kg.employee.dao.NoticeDao">
+	
+	<select id="sltOne"  resultType="MngNoticeDTO">
+		SELECT * FROM NOTICE WHERE MNGR_ID = #{mngr_id} AND RGSDE = #{rgsde}
+	</select>
+	
+	<update id="update" parameterType="MngNoticeDTO">
+		UPDATE NOTICE SET NOTICE_SJ = #{notice_sj}, NOTICE_CN = #{notice_cn},
+						 RDCNT = #{rdcnt}, DELETE_AT = #{delete_at}
+		WHERE MNGR_ID = #{mngr_id}
+		AND RGSDE = #{rgsde}
+	</update>
+	
+	<insert id="insert" parameterType="MngNoticeDTO" >
+		INSERT INTO NOTICE
+		VALUES ( #{mngr_id},  #{rgsde}, #{notice_sj}, #{notice_cn}, #{rdcnt}, #{delete_at})
+		
+	</insert>
+
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hotel.kg.employee.dao.GoodsDao">
+
+	<select id="sltAll"  resultType="MngGoodsDTO">
+		SELECT * FROM GOODS ORDER BY GOODS_NO
+	</select>
+	
+	<select id="sltOne"  resultType="MngGoodsDTO">
+		SELECT * FROM GOODS WHERE GOODS_NO = #{goods_no}
+	</select>
+	
+	<insert id="insert" parameterType="MngGoodsDTO">
+		INSERT INTO GOODS(GOODS_NO, RUMTY_NO, GOODS_NAME, GOODS_PC, GOODS_CN, GOODS_START_DATE, GOODS_END_DATE, GOODS_DELETE_AT, GOODS_TY_NO)
+		VALUES( #{goods_no}, #{rumty_no}, #{goods_name}, #{goods_pc}, #{goods_cn}, #{goods_start_date}, #{goods_end_date}, #{goods_delete_at}, #{goods_ty_no})
+	</insert>
+
+	<update id="update" parameterType="MngGoodsDTO">
+		UPDATE GOODS SET
+		RUMTY_NO = #{rumty_no},
+		GOODS_NAME = #{goods_name},
+		GOODS_PC = #{goods_pc},
+		GOODS_CN = #{goods_cn},
+		GOODS_START_DATE = #{goods_start_date},
+		GOODS_END_DATE = #{goods_end_date},
+		GOODS_DELETE_AT = #{goods_delete_at},
+		GOODS_TY_NO = #{goods_ty_no}
+		WHERE GOODS_NO = #{goods_no}
+	</update>
+
+</mapper>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hotel.kg.member.dao.IMemberHistDAO">
+
+	<insert id="Histinsert" parameterType="HDto">
+		INSERT INTO MEMBER_HIST VALUES(#{mbr_date}, #{mbr_contents})
+	</insert>
+
+</mapper>

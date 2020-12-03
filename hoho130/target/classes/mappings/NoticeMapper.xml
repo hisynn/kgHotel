@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hotel.kg.notice.dao.INoticeDAO">
+
+	<select id="selectAll"  parameterType="EDto" resultType="NDto">
+	<!-- <![CDATA[  -->
+	SELECT*FROM(SELECT ROWNUM RNUM, O.*FROM
+	(SELECT*FROM NOTICE ORDER BY RGSDE DESC)O)WHERE RNUM  &gt;=#{start} AND ROWNUM &lt;=#{end}
+	<!-- ]]> -->
+	</select>
+	
+	<select id="CountAll" resultType="int">
+			SELECT COUNT(*) FROM NOTICE
+	</select>
+	
+	<select id="selectOne" parameterType="NDto" resultType="NDto">
+			SELECT * FROM NOTICE WHERE MNGR_ID = #{mngr_id} and RGSDE = #{rgsde}
+	</select>
+	
+	<update id="noticeUpdate" parameterType="NDto" >
+	 	UPDATE NOTICE SET RDCNT = #{rdcnt} WHERE MNGR_ID = #{mngr_id} and RGSDE = #{rgsde}
+	
+	</update>
+	
+
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hotel.kg.member.dao.IMemberDAO">
+
+	<select id="selectAll"  resultType="dto">
+		SELECT * FROM MBR ORDER BY act_at
+	</select>
+	
+	<select id="selectOne" resultType="dto">
+		SELECT * FROM MBR WHERE MBR_EMAIL= #{MBR_EMAIL}
+	</select>
+	
+	<select id="searchID" resultType="String">
+		SELECT * FROM MBR WHERE MBR_NAME=#{mbr_name} AND MBR_TEL=#{mbr_tel} AND MBR_BRTHDY=#{mbr_brthdy}
+	</select>
+	
+	<select id="searchPw" resultType="dto">
+		SELECT * FROM MBR WHERE MBR_EMAIL=#{mbr_email} AND MBR_NAME=#{mbr_name} AND MBR_tel=#{mbr_tel}
+	</select>
+
+	<insert id="insert" parameterType="dto">
+		INSERT INTO MBR VALUES(#{mbr_email},#{mbr_name},#{mbr_pw},#{mbr_brthdy},#{mbr_adres},#{mbr_tel},#{mbr_grad},#{mbr_nlty},#{mbr_sexdstn},#{act_at},#{srbde},#{mbr_point})
+	</insert>
+
+	<update id="update" parameterType="dto" >
+		UPDATE MBR SET MBR_NAME = #{mbr_name}, 	MBR_TEL = #{mbr_tel}, MBR_BRTHDY = #{mbr_brthdy} , MBR_NLTY= #{mbr_nlty} WHERE MBR_EMAIL = #{mbr_email}
+	</update>
+	
+	<update id="PWupdate" parameterType="dto" >
+		UPDATE MBR SET mbr_pw = #{mbr_pw} WHERE MBR_EMAIL = #{mbr_email}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM MBR WHERE MBR_EMAIL = #{mbr_email}
+	</delete>
+
+</mapper>
